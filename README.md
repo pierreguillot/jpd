@@ -1,2 +1,2 @@
-# jpd
+# jPD
 Pure Data in Juce
