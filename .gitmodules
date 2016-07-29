@@ -1,0 +1,3 @@
+[submodule "zpd"]
+	path = zpd
+	url = https://pierreguillot@github.com/pierreguillot/zpd.git
