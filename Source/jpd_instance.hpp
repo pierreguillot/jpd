@@ -29,13 +29,6 @@ namespace jpd
         
     private:
         void patch_changed() final;
-        class Window : public juce::DocumentWindow
-        {
-        public:
-            Window();
-            void closeButtonPressed() final;
-            void setContent(juce::String& name, juce::Component* content);
-        };
         
         void openPatch();
         void closePatch();
@@ -45,14 +38,11 @@ namespace jpd
         void showHelp();
         
         xpd::processor&     m_processor;
-        Window              m_window;
+        DummyWindow         m_window_about;
+        DummyWindow         m_window_console;
         juce::TextButton    m_button;
         juce::ScopedPointer<jpd::patch> m_patch;
         
-        /*
-        GuiFlowerButton     m_button;
-        
-         */
         JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(Instance)
     };
 }

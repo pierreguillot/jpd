@@ -31,6 +31,19 @@ namespace jpd
         static inline juce::Colour const& getColorInv() noexcept {static juce::Colour c(juce::Colour::fromFloatRGBA(0.f, 0.f, 0.f, 0.f)); return c;}
     };
     
+    class DummyWindow : public juce::DocumentWindow
+    {
+    public:
+        DummyWindow(const juce::String& name,
+                    juce::Colour backgroundColour,
+                    int requiredButtons,
+                    bool addToDesktop = true) :
+        juce::DocumentWindow(name, backgroundColour, requiredButtons, addToDesktop) {};
+        ~DummyWindow() = default;
+        void closeButtonPressed() override {removeFromDesktop();}
+    };
+    
+    
     
     // ==================================================================================== //
     //                                      JPD PATCH                                       //

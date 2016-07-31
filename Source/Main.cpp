@@ -27,7 +27,7 @@ public:
         xpd::environment::initialize();
         m_command  = new juce::ApplicationCommandManager();
         m_command->registerAllCommandsForTarget(this);
-        m_windows  = new window(getApplicationName());
+        m_window  = new window(getApplicationName());
         juce::LookAndFeel::getDefaultLookAndFeel().setUsingNativeAlertWindows(true);
     }
     
@@ -37,8 +37,8 @@ public:
     //! @brief Called to allow the application to clear up before exiting.
     void shutdown() final
     {
-        m_windows = nullptr;
-        m_command = nullptr;
+        m_command   = nullptr;
+        m_window    = nullptr;
         xpd::environment::clear();
     }
     
@@ -124,12 +124,20 @@ public:
     class window : public juce::DocumentWindow
     {
     public:
-        window(juce::String name) : juce::DocumentWindow(name, juce::Colours::lightgrey, juce::DocumentWindow::allButtons)
+        window(juce::String name) : juce::DocumentWindow(name, juce::Colours::lightgrey, juce::DocumentWindow::allButtons),
+        m_instance(m_processor)
         {
             setUsingNativeTitleBar(true);
-            setContentOwned(new jpd::Instance(m_processor), true);
+            setContentOwned(&m_instance, false);
             setFullScreen(true);
             setVisible(true);
+            setBounds (0, 0, getParentWidth(), getParentHeight());
+            m_instance.setSize(getWidth(), getHeight());
+        }
+        
+        ~window()
+        {
+            m_processor.remove_listener(m_instance);
         }
         
         void closeButtonPressed() override
@@ -139,13 +147,14 @@ public:
         
     private:
         xpd::processor m_processor;
+        jpd::Instance  m_instance;
         JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(window)
     };
     
     
 private:
     
-    juce::ScopedPointer<juce::DocumentWindow>            m_windows;
+    juce::ScopedPointer<juce::DocumentWindow>            m_window;
     juce::ScopedPointer<juce::ApplicationCommandManager> m_command;
 };
 

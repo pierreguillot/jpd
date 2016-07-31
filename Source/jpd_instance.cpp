@@ -8,50 +8,43 @@
 
 namespace jpd
 {
-    Instance::Window::Window() :
-    juce::DocumentWindow(juce::String(), Graphics::getColorBg(), juce::DocumentWindow::closeButton, false)
-    {
-        setUsingNativeTitleBar(true);
-        setBounds(50, 50, 300, 370);
-        setResizable(false, false);
-        setDropShadowEnabled(true);
-        setVisible(true);
-    }
-    
-    void Instance::Window::closeButtonPressed()
-    {
-        removeFromDesktop();
-    }
-    
-    void Instance::Window::setContent(juce::String& name, juce::Component* content)
-    {
-        setContentOwned(content, false);
-        setName(name);
-        addToDesktop();
-        grabKeyboardFocus();
-        toFront(true);
-        setAlwaysOnTop(true);
-    }
-    
     // ==================================================================================== //
     //                                      JPD INSTANCE                                    //
     // ==================================================================================== //
     
-    Instance::Instance(xpd::processor& p) : m_processor(p)
+    Instance::Instance(xpd::processor& p) :
+    m_processor(p),
+    m_window_about(juce::String("About Camomile"), Graphics::getColorBg(), juce::DocumentWindow::closeButton, false),
+    m_window_console(juce::String("Camomile Console"), Graphics::getColorBg(), juce::DocumentWindow::closeButton, false),
+    m_button("Menu")
     {
         setOpaque(true);
-        setSize(600, 420);
         setWantsKeyboardFocus(true);
         m_processor.add_listener(*this);
         
-        //addAndMakeVisible(m_button);
+        m_window_about.setUsingNativeTitleBar(true);
+        m_window_about.setBounds(50, 50, 300, 370);
+        m_window_about.setResizable(false, false);
+        m_window_about.setDropShadowEnabled(true);
+        m_window_about.setVisible(true);
         
-        //m_button.addListener(this);
+        m_window_console.setUsingNativeTitleBar(true);
+        m_window_console.setBounds(50, 50, 300, 370);
+        m_window_console.setResizable(false, false);
+        m_window_console.setDropShadowEnabled(true);
+        m_window_console.setVisible(true);
+    
+        m_button.setBounds(0, 0, 40, 20);
+        addAndMakeVisible(m_button);
+        m_button.addListener(this);
+        
         patch_changed();
     }
     
     Instance::~Instance()
     {
+        m_window_about.removeFromDesktop();
+        m_window_console.removeFromDesktop();
         m_processor.remove_listener(*this);
     }
     
@@ -125,12 +118,18 @@ namespace jpd
     
     void Instance::showAbout()
     {
-        //m_window.setContentOwned("About Camomile " + String(JucePlugin_VersionString), new GuiAbout(), false);
+        //m_window_about.setContentOwned(new GuiAbout(), false);
+        m_window_about.addToDesktop();
+        m_window_about.grabKeyboardFocus();
+        m_window_about.toFront(true);
     }
     
     void Instance::showConsole()
     {
-        //m_window.setContent("Camomile Console", new GuiConsole(m_processor));
+        //m_window_about.setContentOwned(new GuiAbout(), false);
+        m_window_console.addToDesktop();
+        m_window_console.grabKeyboardFocus();
+        m_window_console.toFront(true);
     }
     
     void Instance::showHelp()
