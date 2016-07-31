@@ -8,6 +8,9 @@
     <Filter Include="jPD\Source">
       <UniqueIdentifier>{FAF45277-B7EF-3237-5FE8-B8E65B78E487}</UniqueIdentifier>
     </Filter>
+    <Filter Include="jPD\jpd">
+      <UniqueIdentifier>{04B841B2-DCDB-0F8E-3A45-2003308C9F68}</UniqueIdentifier>
+    </Filter>
     <Filter Include="jPD\xpd">
       <UniqueIdentifier>{CC2CC1E3-4197-C042-EA81-E84F6304691D}</UniqueIdentifier>
     </Filter>
@@ -337,11 +340,14 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\Source\MainComponent.cpp">
-      <Filter>jPD\Source</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\Source\Main.cpp">
       <Filter>jPD\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\jpd_patch.cpp">
+      <Filter>jPD\jpd</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\jpd_app.cpp">
+      <Filter>jPD\jpd</Filter>
     </ClCompile>
     <ClCompile Include="..\..\zpd\xpd\xpd_atom.cpp">
       <Filter>jPD\xpd</Filter>
@@ -368,6 +374,9 @@
       <Filter>jPD\xpd</Filter>
     </ClCompile>
     <ClCompile Include="..\..\zpd\xpd\xpd_patch.cpp">
+      <Filter>jPD\xpd</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\zpd\xpd\xpd_processor.cpp">
       <Filter>jPD\xpd</Filter>
     </ClCompile>
     <ClCompile Include="..\..\zpd\xpd\xpd_symbol.cpp">
@@ -2238,8 +2247,14 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\Source\MainComponent.h">
-      <Filter>jPD\Source</Filter>
+    <ClInclude Include="..\..\Source\jpd_patch.hpp">
+      <Filter>jPD\jpd</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\jpd_app.hpp">
+      <Filter>jPD\jpd</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\jpd.hpp">
+      <Filter>jPD\jpd</Filter>
     </ClInclude>
     <ClInclude Include="..\..\zpd\xpd\xpd_atom.hpp">
       <Filter>jPD\xpd</Filter>
@@ -2269,6 +2284,9 @@
       <Filter>jPD\xpd</Filter>
     </ClInclude>
     <ClInclude Include="..\..\zpd\xpd\xpd_patch.hpp">
+      <Filter>jPD\xpd</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\zpd\xpd\xpd_processor.hpp">
       <Filter>jPD\xpd</Filter>
     </ClInclude>
     <ClInclude Include="..\..\zpd\xpd\xpd_symbol.hpp">

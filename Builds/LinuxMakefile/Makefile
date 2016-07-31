@@ -18,7 +18,7 @@ ifeq ($(CONFIG),Debug)
     TARGET_ARCH := -march=native
   endif
 
-  CPPFLAGS := $(DEPFLAGS) -DLINUX=1 -DDEBUG=1 -D_DEBUG=1 -DJUCER_LINUX_MAKE_6D53C8B4=1 -DJUCE_APP_VERSION=1.0.0 -DJUCE_APP_VERSION_HEX=0x10000 -I /usr/include -I /usr/include/freetype2 -I ../../JuceLibraryCode -I ../../juce/modules
+  CPPFLAGS := $(DEPFLAGS) -DLINUX=1 -DDEBUG=1 -D_DEBUG=1 -DPD=1 -DUSEAPI_DUMMY=1 -DPD_INTERNAL=1 -DTHREAD_LOCKING=0 -DDONT_SET_USING_JUCE_NAMESPACE=1 -DJUCER_LINUX_MAKE_6D53C8B4=1 -DJUCE_APP_VERSION=1.0.0 -DJUCE_APP_VERSION_HEX=0x10000 -I /usr/include -I /usr/include/freetype2 -I ../../JuceLibraryCode -I ../../juce/modules
   CFLAGS += $(CPPFLAGS) $(TARGET_ARCH) -g -ggdb -O0
   CXXFLAGS += $(CFLAGS) -std=c++11
   LDFLAGS += $(TARGET_ARCH) -L$(BINDIR) -L$(LIBDIR) -L/usr/X11R6/lib/ -lX11 -lXext -lXinerama -lasound -ldl -lfreetype -lpthread -lrt 
@@ -38,7 +38,7 @@ ifeq ($(CONFIG),Release)
     TARGET_ARCH := -march=native
   endif
 
-  CPPFLAGS := $(DEPFLAGS) -DLINUX=1 -DNDEBUG=1 -DJUCER_LINUX_MAKE_6D53C8B4=1 -DJUCE_APP_VERSION=1.0.0 -DJUCE_APP_VERSION_HEX=0x10000 -I /usr/include -I /usr/include/freetype2 -I ../../JuceLibraryCode -I ../../juce/modules
+  CPPFLAGS := $(DEPFLAGS) -DLINUX=1 -DNDEBUG=1 -DPD=1 -DUSEAPI_DUMMY=1 -DPD_INTERNAL=1 -DTHREAD_LOCKING=0 -DDONT_SET_USING_JUCE_NAMESPACE=1 -DJUCER_LINUX_MAKE_6D53C8B4=1 -DJUCE_APP_VERSION=1.0.0 -DJUCE_APP_VERSION_HEX=0x10000 -I /usr/include -I /usr/include/freetype2 -I ../../JuceLibraryCode -I ../../juce/modules
   CFLAGS += $(CPPFLAGS) $(TARGET_ARCH) -O3
   CXXFLAGS += $(CFLAGS) -std=c++11
   LDFLAGS += $(TARGET_ARCH) -L$(BINDIR) -L$(LIBDIR) -fvisibility=hidden -L/usr/X11R6/lib/ -lX11 -lXext -lXinerama -lasound -ldl -lfreetype -lpthread -lrt 
@@ -49,8 +49,9 @@ ifeq ($(CONFIG),Release)
 endif
 
 OBJECTS := \
-  $(OBJDIR)/MainComponent_a6ffb4a5.o \
   $(OBJDIR)/Main_90ebc5c2.o \
+  $(OBJDIR)/jpd_patch_2c4afaa8.o \
+  $(OBJDIR)/jpd_app_6fb8aec1.o \
   $(OBJDIR)/xpd_atom_7b7ee85d.o \
   $(OBJDIR)/xpd_console_11d85455.o \
   $(OBJDIR)/xpd_environment_cc4ad691.o \
@@ -60,6 +61,7 @@ OBJECTS := \
   $(OBJDIR)/xpd_mutex_4e476abd.o \
   $(OBJDIR)/xpd_object_3345318b.o \
   $(OBJDIR)/xpd_patch_e9320d06.o \
+  $(OBJDIR)/xpd_processor_e1d1d7d0.o \
   $(OBJDIR)/xpd_symbol_38b2f64.o \
   $(OBJDIR)/xpd_tie_e5e6378e.o \
   $(OBJDIR)/cpd_dsp_e5a5ce55.o \
@@ -183,14 +185,19 @@ strip:
 	@echo Stripping jPD
 	-@strip --strip-unneeded $(OUTDIR)/$(TARGET)
 
-$(OBJDIR)/MainComponent_a6ffb4a5.o: ../../Source/MainComponent.cpp
-	-@mkdir -p $(OBJDIR)
-	@echo "Compiling MainComponent.cpp"
-	@$(CXX) $(CXXFLAGS) -o "$@" -c "$<"
-
 $(OBJDIR)/Main_90ebc5c2.o: ../../Source/Main.cpp
 	-@mkdir -p $(OBJDIR)
 	@echo "Compiling Main.cpp"
+	@$(CXX) $(CXXFLAGS) -o "$@" -c "$<"
+
+$(OBJDIR)/jpd_patch_2c4afaa8.o: ../../Source/jpd_patch.cpp
+	-@mkdir -p $(OBJDIR)
+	@echo "Compiling jpd_patch.cpp"
+	@$(CXX) $(CXXFLAGS) -o "$@" -c "$<"
+
+$(OBJDIR)/jpd_app_6fb8aec1.o: ../../Source/jpd_app.cpp
+	-@mkdir -p $(OBJDIR)
+	@echo "Compiling jpd_app.cpp"
 	@$(CXX) $(CXXFLAGS) -o "$@" -c "$<"
 
 $(OBJDIR)/xpd_atom_7b7ee85d.o: ../../zpd/xpd/xpd_atom.cpp
@@ -236,6 +243,11 @@ $(OBJDIR)/xpd_object_3345318b.o: ../../zpd/xpd/xpd_object.cpp
 $(OBJDIR)/xpd_patch_e9320d06.o: ../../zpd/xpd/xpd_patch.cpp
 	-@mkdir -p $(OBJDIR)
 	@echo "Compiling xpd_patch.cpp"
+	@$(CXX) $(CXXFLAGS) -o "$@" -c "$<"
+
+$(OBJDIR)/xpd_processor_e1d1d7d0.o: ../../zpd/xpd/xpd_processor.cpp
+	-@mkdir -p $(OBJDIR)
+	@echo "Compiling xpd_processor.cpp"
 	@$(CXX) $(CXXFLAGS) -o "$@" -c "$<"
 
 $(OBJDIR)/xpd_symbol_38b2f64.o: ../../zpd/xpd/xpd_symbol.cpp

@@ -1,13 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <JUCERPROJECT id="Wd3lww" name="jPD" projectType="guiapp" version="1.0.0" bundleIdentifier="com.pierreguillot.jpd"
-              includeBinaryInAppConfig="1" jucerVersion="4.2.3">
+              includeBinaryInAppConfig="1" jucerVersion="4.2.3" defines="PD=1&#10;USEAPI_DUMMY=1&#10;PD_INTERNAL=1&#10;THREAD_LOCKING=0&#10;DONT_SET_USING_JUCE_NAMESPACE=1">
   <MAINGROUP id="Uft8qM" name="jPD">
     <GROUP id="{59F08255-D76A-44BC-0BC4-D13CB9DF5872}" name="Source">
-      <FILE id="x92kUm" name="MainComponent.cpp" compile="1" resource="0"
-            file="Source/MainComponent.cpp"/>
-      <FILE id="YWSc17" name="MainComponent.h" compile="0" resource="0" file="Source/MainComponent.h"/>
       <FILE id="dqiWGl" name="Main.cpp" compile="1" resource="0" file="Source/Main.cpp"/>
+    </GROUP>
+    <GROUP id="{21482969-0E6C-1141-57C1-C5A5AFBA41E7}" name="jpd">
+      <FILE id="jzXrWy" name="jpd_patch.cpp" compile="1" resource="0" file="Source/jpd_patch.cpp"/>
+      <FILE id="KblI9D" name="jpd_patch.hpp" compile="0" resource="0" file="Source/jpd_patch.hpp"/>
+      <FILE id="EGyxxx" name="jpd_app.cpp" compile="1" resource="0" file="Source/jpd_app.cpp"/>
+      <FILE id="T8eFOE" name="jpd_app.hpp" compile="0" resource="0" file="Source/jpd_app.hpp"/>
+      <FILE id="IgIZTN" name="jpd.hpp" compile="0" resource="0" file="Source/jpd.hpp"/>
     </GROUP>
     <GROUP id="{D49E12EE-2E19-B60A-038C-16156C16CE4E}" name="xpd">
       <FILE id="mqyGSu" name="xpd_atom.cpp" compile="1" resource="0" file="zpd/xpd/xpd_atom.cpp"/>
@@ -33,6 +37,10 @@
       <FILE id="C8CkI3" name="xpd_object.hpp" compile="0" resource="0" file="zpd/xpd/xpd_object.hpp"/>
       <FILE id="SCmYGn" name="xpd_patch.cpp" compile="1" resource="0" file="zpd/xpd/xpd_patch.cpp"/>
       <FILE id="ISGwQV" name="xpd_patch.hpp" compile="0" resource="0" file="zpd/xpd/xpd_patch.hpp"/>
+      <FILE id="QEy4fW" name="xpd_processor.cpp" compile="1" resource="0"
+            file="zpd/xpd/xpd_processor.cpp"/>
+      <FILE id="BlcNaD" name="xpd_processor.hpp" compile="0" resource="0"
+            file="zpd/xpd/xpd_processor.hpp"/>
       <FILE id="SdDLU0" name="xpd_symbol.cpp" compile="1" resource="0" file="zpd/xpd/xpd_symbol.cpp"/>
       <FILE id="ZUbnVY" name="xpd_symbol.hpp" compile="0" resource="0" file="zpd/xpd/xpd_symbol.hpp"/>
       <FILE id="Ehaya1" name="xpd_tie.cpp" compile="1" resource="0" file="zpd/xpd/xpd_tie.cpp"/>
@@ -167,10 +175,14 @@
     </GROUP>
   </MAINGROUP>
   <EXPORTFORMATS>
-    <XCODE_MAC targetFolder="Builds/MacOSX">
+    <XCODE_MAC targetFolder="Builds/MacOSX" extraDefs="HAVE_UNISTD_H=1&#10;HAVE_ALLOCA_H=1&#10;HAVE_LIBDL=1">
       <CONFIGURATIONS>
-        <CONFIGURATION name="Debug" isDebug="1" optimisation="1" targetName="jPD"/>
-        <CONFIGURATION name="Release" isDebug="0" optimisation="3" targetName="jPD"/>
+        <CONFIGURATION name="Debug" isDebug="1" optimisation="1" targetName="jPD" osxSDK="default"
+                       osxCompatibility="10.7 SDK" osxArchitecture="64BitUniversal"
+                       cppLanguageStandard="c++11" cppLibType="libc++" headerPath=""/>
+        <CONFIGURATION name="Release" isDebug="0" optimisation="3" targetName="jPD"
+                       osxSDK="default" osxCompatibility="10.7 SDK" osxArchitecture="64BitUniversal"
+                       cppLanguageStandard="c++11" cppLibType="libc++" headerPath=""/>
       </CONFIGURATIONS>
       <MODULEPATHS>
         <MODULEPATH id="juce_core" path="juce/modules"/>
