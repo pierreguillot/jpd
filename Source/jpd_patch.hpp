@@ -7,12 +7,11 @@
 #ifndef JPD_PATCH_INCLUDE_HPP
 #define JPD_PATCH_INCLUDE_HPP
 
-#include "jpd_instance.hpp"
+#include "../zpd/xpd/xpd.hpp"
+#include "../JuceLibraryCode/JuceHeader.h"
 
 namespace jpd
 {
-    class app;
-    
     // ==================================================================================== //
     //                                      JPD PATCH                                       //
     // ==================================================================================== //
