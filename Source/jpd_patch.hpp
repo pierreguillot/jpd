@@ -12,9 +12,30 @@
 
 namespace jpd
 {
+    class Graphics
+    {
+    public:
+        static inline juce::Font getFont()
+        {
+#ifdef __APPLE__
+            return juce::Font(juce::String("Monaco"), 13.f, juce::Font::plain).withStyle(juce::Font::bold);
+#else
+            return juce::Font(juce::String("DejaVu Sans Mono"), 12.f, juce::Font::plain).withStyle(juce::Font::bold);
+#endif
+        }
+        
+        static inline int getBorderSize() noexcept {return 1;}
+        static inline juce::Colour const& getColorBg() noexcept {return juce::Colours::lightgrey;}
+        static inline juce::Colour const& getColorBd() noexcept {return juce::Colours::darkgrey;}
+        static inline juce::Colour const& getColorTxt() noexcept {return juce::Colours::darkgrey;}
+        static inline juce::Colour const& getColorInv() noexcept {static juce::Colour c(juce::Colour::fromFloatRGBA(0.f, 0.f, 0.f, 0.f)); return c;}
+    };
+    
+    
     // ==================================================================================== //
     //                                      JPD PATCH                                       //
     // ==================================================================================== //
+    
     
     class patch : public juce::Component
     {
@@ -26,21 +47,6 @@ namespace jpd
     private:
         juce::OwnedArray<juce::Component>   m_objects;
         JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(patch)
-    };
-    
-    
-    class patch::window : public juce::DocumentWindow
-    {
-    public:
-        window(jpd::app& app, xpd::patch const& patch);
-        ~window() = default;
-        
-    private:
-        
-        void closeButtonPressed() final;
-        
-        jpd::app& m_application;
-        JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(window)
     };
 }
 

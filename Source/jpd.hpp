@@ -7,6 +7,6 @@
 #ifndef JPD_INCLUDE_HPP
 #define JPD_INCLUDE_HPP
 
-#include "jpd_patch.hpp"
+#include "jpd_instance.hpp"
 
 #endif // JPD_INCLUDE_HPP

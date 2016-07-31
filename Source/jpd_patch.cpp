@@ -32,25 +32,4 @@ namespace jpd
         
     }
     
-    
-    // ==================================================================================== //
-    //                                      JPD PATCH WINDOW                                //
-    // ==================================================================================== //
-    
-    patch::window::window(jpd::app& app, xpd::patch const& patch) :
-    DocumentWindow(patch.name(), juce::Colours::lightgrey, juce::DocumentWindow::allButtons, true),
-    m_application(app)
-    {
-        setUsingNativeTitleBar(true);
-        setSize(600, 500);
-        centreWithSize(getWidth(), getHeight());
-        setResizable(true, true);
-        setVisible(true);
-        //setContentOwned(<#juce::Component *newContentComponent#>, <#bool resizeToFitWhenContentChangesSize#>)
-    }
-    
-    void patch::window::closeButtonPressed()
-    {
-        ;
-    }
 }

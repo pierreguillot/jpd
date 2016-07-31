@@ -127,7 +127,7 @@ public:
         window(juce::String name) : juce::DocumentWindow(name, juce::Colours::lightgrey, juce::DocumentWindow::allButtons)
         {
             setUsingNativeTitleBar(true);
-            setContentOwned(new MainContentComponent(), true);
+            setContentOwned(new jpd::Instance(m_processor), true);
             setFullScreen(true);
             setVisible(true);
         }
@@ -138,6 +138,7 @@ public:
         }
         
     private:
+        xpd::processor m_processor;
         JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(window)
     };
     
