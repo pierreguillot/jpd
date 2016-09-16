@@ -51,7 +51,6 @@ endif
 OBJECTS := \
   $(OBJDIR)/Main_90ebc5c2.o \
   $(OBJDIR)/jpd_patch_2c4afaa8.o \
-  $(OBJDIR)/jpd_app_6fb8aec1.o \
   $(OBJDIR)/xpd_atom_7b7ee85d.o \
   $(OBJDIR)/xpd_console_11d85455.o \
   $(OBJDIR)/xpd_environment_cc4ad691.o \
@@ -193,11 +192,6 @@ $(OBJDIR)/Main_90ebc5c2.o: ../../Source/Main.cpp
 $(OBJDIR)/jpd_patch_2c4afaa8.o: ../../Source/jpd_patch.cpp
 	-@mkdir -p $(OBJDIR)
 	@echo "Compiling jpd_patch.cpp"
-	@$(CXX) $(CXXFLAGS) -o "$@" -c "$<"
-
-$(OBJDIR)/jpd_app_6fb8aec1.o: ../../Source/jpd_app.cpp
-	-@mkdir -p $(OBJDIR)
-	@echo "Compiling jpd_app.cpp"
 	@$(CXX) $(CXXFLAGS) -o "$@" -c "$<"
 
 $(OBJDIR)/xpd_atom_7b7ee85d.o: ../../zpd/xpd/xpd_atom.cpp

@@ -61,7 +61,7 @@ namespace jpd
         
         
         xpd::patch const patch = m_processor.get_patch();
-        if(bool(patch))
+        if(static_cast<bool>(patch))
         {
             g.drawText(juce::String(patch.name()).upToLastOccurrenceOf(juce::StringRef(".pd"), false, false),
                        0, 0, getWidth(), 20, juce::Justification::centred);
@@ -76,7 +76,7 @@ namespace jpd
     void Instance::patch_changed()
     {
         const xpd::patch patch = m_processor.get_patch();
-        if(bool(patch))
+        if(static_cast<bool>(patch))
         {
             /*
             m_patch.setPatch(m_processor, patch);
@@ -91,6 +91,7 @@ namespace jpd
         juce::FileChooser fc("Open a patch...",
                              static_cast<bool>(patch) ? juce::File(patch.path()) : juce::File::getSpecialLocation(juce::File::userDocumentsDirectory)
                              , "*.pd", true);
+        
         if(fc.browseForFileToOpen())
         {
             juce::File file(fc.getResult());
@@ -126,7 +127,7 @@ namespace jpd
     
     void Instance::showConsole()
     {
-        //m_window_about.setContentOwned(new GuiAbout(), false);
+        //m_window_console(new GuiAbout(), false);
         m_window_console.addToDesktop();
         m_window_console.grabKeyboardFocus();
         m_window_console.toFront(true);
@@ -155,7 +156,7 @@ namespace jpd
                     showAbout();
                     break;
                 case 2:
-                    showAbout();
+                    openPatch();
                     break;
                 case 3:
                     closePatch();

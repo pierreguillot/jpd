@@ -131,7 +131,6 @@
   <ItemGroup>
     <ClCompile Include="..\..\Source\Main.cpp"/>
     <ClCompile Include="..\..\Source\jpd_patch.cpp"/>
-    <ClCompile Include="..\..\Source\jpd_app.cpp"/>
     <ClCompile Include="..\..\zpd\xpd\xpd_atom.cpp"/>
     <ClCompile Include="..\..\zpd\xpd\xpd_console.cpp"/>
     <ClCompile Include="..\..\zpd\xpd\xpd_environment.cpp"/>
@@ -1702,7 +1701,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Source\jpd_patch.hpp"/>
-    <ClInclude Include="..\..\Source\jpd_app.hpp"/>
     <ClInclude Include="..\..\Source\jpd.hpp"/>
     <ClInclude Include="..\..\zpd\xpd\xpd_atom.hpp"/>
     <ClInclude Include="..\..\zpd\xpd\xpd_console.hpp"/>

@@ -346,9 +346,6 @@
     <ClCompile Include="..\..\Source\jpd_patch.cpp">
       <Filter>jPD\jpd</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Source\jpd_app.cpp">
-      <Filter>jPD\jpd</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\zpd\xpd\xpd_atom.cpp">
       <Filter>jPD\xpd</Filter>
     </ClCompile>
@@ -2248,9 +2245,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Source\jpd_patch.hpp">
-      <Filter>jPD\jpd</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\jpd_app.hpp">
       <Filter>jPD\jpd</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\jpd.hpp">

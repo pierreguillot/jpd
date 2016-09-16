@@ -9,8 +9,6 @@
     <GROUP id="{21482969-0E6C-1141-57C1-C5A5AFBA41E7}" name="jpd">
       <FILE id="jzXrWy" name="jpd_patch.cpp" compile="1" resource="0" file="Source/jpd_patch.cpp"/>
       <FILE id="KblI9D" name="jpd_patch.hpp" compile="0" resource="0" file="Source/jpd_patch.hpp"/>
-      <FILE id="EGyxxx" name="jpd_app.cpp" compile="1" resource="0" file="Source/jpd_app.cpp"/>
-      <FILE id="T8eFOE" name="jpd_app.hpp" compile="0" resource="0" file="Source/jpd_app.hpp"/>
       <FILE id="IgIZTN" name="jpd.hpp" compile="0" resource="0" file="Source/jpd.hpp"/>
     </GROUP>
     <GROUP id="{D49E12EE-2E19-B60A-038C-16156C16CE4E}" name="xpd">

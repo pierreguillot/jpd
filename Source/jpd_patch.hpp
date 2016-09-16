@@ -15,13 +15,12 @@ namespace jpd
     class Graphics
     {
     public:
-        static inline juce::Font getFont()
+        static inline juce::Font& getFont()
         {
-#ifdef __APPLE__
-            return juce::Font(juce::String("Monaco"), 13.f, juce::Font::plain).withStyle(juce::Font::bold);
-#else
-            return juce::Font(juce::String("DejaVu Sans Mono"), 12.f, juce::Font::plain).withStyle(juce::Font::bold);
-#endif
+            static juce::Font f(juce::String(xpd::environment::font_name()),
+                                static_cast<float>(xpd::environment::font_size()),
+                                xpd::environment::font_name() == std::string("normal") ? juce::Font::plain : juce::Font::bold);
+            return f;
         }
         
         static inline int getBorderSize() noexcept {return 1;}

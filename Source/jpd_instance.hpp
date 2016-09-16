@@ -15,9 +15,7 @@ namespace jpd
     //                                      JPD INSTANCE                                    //
     // ==================================================================================== //
     
-    class Instance :
-    virtual public juce::Component,
-    public juce::Button::Listener,
+    class Instance : virtual public juce::Component, public juce::Button::Listener,
     public xpd::processor::listener
     {
     public:
@@ -33,6 +31,7 @@ namespace jpd
         void openPatch();
         void closePatch();
         void reloadPatch();
+        
         void showAbout();
         void showConsole();
         void showHelp();
